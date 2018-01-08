@@ -1,15 +1,48 @@
 from flask import Flask
+from flask import request
 
 app = Flask(__name__)
 
+# 路由
 @app.route('/')
+def index():
+    return 'Index Page'
 
-def hello_world():
-    return 'Hello World!'
+
+# hello函数
+@app.route('/hello')
+
+def hello():
+    return 'Hello World'
+
+
+@app.route('/user/<username>')
+def show_user_profile(username):
+    return 'User %s' %username
+
+
+@app.route('/post/<int:post_id>')
+def show_post(post_id):
+    return 'Post %d' %post_id
+
+
+@app.route('/login',methods=['GET','POST'])
+def login():
+    if request.method == 'POST':
+        pass
+    else:
+        return "GET NO NO NO"
+
+
+
+@app.route('/addsum/<int:a_id>/<int:b_id>')
+def qiuhe(a_id,b_id):
+    return 'ID1 %d + ID2 %d = %d' %(a_id,b_id,a_id+b_id)
+
 
 if __name__ == '__main__':
-    app.run()
-    # app.run(debug=True,host='0.0.0.0')
+    #app.run()
+    app.run(debug=True,host='0.0.0.0')
 
 
 
