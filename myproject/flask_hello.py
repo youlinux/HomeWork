@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import render_template
 from flask import request
 
 app = Flask(__name__)
@@ -12,8 +13,10 @@ def index():
 # hello函数
 @app.route('/hello')
 
-def hello():
-    return 'Hello World'
+@app.route('/hello/<name>')
+def hello(name=None):
+    #return 'Hello World'
+    return render_template('hello.html',name=name)
 
 
 @app.route('/user/<username>')
